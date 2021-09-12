@@ -1,0 +1,15 @@
+name: Test Github Actions with Node js
+on: ["push"]
+env:
+  NODE_VERSION: "14"
+jobs:
+  run-github-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: yarn install --frozen-lockfile
+      - run: node test.js
+
